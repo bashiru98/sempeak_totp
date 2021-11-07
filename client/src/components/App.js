@@ -22,8 +22,8 @@ class App extends Component {
             <Header />
             <Switch>
               <Route path="/blogs/new" component={BlogNew} />
-              <Route exact path="/blogs/:_id" component={BlogShow} />
-              <Route path="/blogs" component={Dashboard} />
+              <Route exact path="/view/secure/code/:_id" component={BlogShow} />
+              <Route path="/secure/sempeak/otpcodes" component={Dashboard} />
               <Route path="/" component={Landing} />
             </Switch>
           </div>

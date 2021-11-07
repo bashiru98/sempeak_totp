@@ -29,7 +29,7 @@ export const submitBlog = (values, file, history) => async dispatch => {
     imageUrl: uploadConfig.data.key
   });
  
-  history.push('/blogs');
+  history.push('/secure/sempeak/otpcodes');
   dispatch({ type: FETCH_BLOG, payload: res.data });
 };
 
