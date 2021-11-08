@@ -36,14 +36,12 @@ module.exports = app => {
   app.get('/api/totps',requireLogin, async (req, res) => {
   
 
-    const blogs = await Blog.find({ }).cache({
-      key: req.user.id
-    });
+    const blogs = await Blog.find({ })
 
     res.send(blogs);
   });
 
-  app.post('/api/totps',requireLogin, cleanCache, async (req, res) => {
+  app.post('/api/totps',requireLogin, async (req, res) => {
     const { title, content, imageUrl,user,secret} = req.body;
     const blog = new Blog({
       imageUrl,
