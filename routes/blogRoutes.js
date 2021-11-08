@@ -9,7 +9,7 @@ const Blog = mongoose.model('Blog');
 module.exports = app => {
   app.get('/api/totps/:id', requireLogin, async (req, res) => {
     try {
-      console.log("reqs", req.user.id )
+     
       const code = await Blog.findOne({
         _id: req.params.id
       });
@@ -53,7 +53,6 @@ module.exports = app => {
 
     try {
       await blog.save();
-      console.log(blog)
       res.send(blog);
     } catch (err) {
       res.send(400, err);
