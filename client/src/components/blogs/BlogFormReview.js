@@ -34,7 +34,7 @@ class BlogFormReview extends Component {
           Back
         </button>
         <button className="green btn-flat right white-text">
-          Save Blog
+          Save Totp
           <i className="material-icons right">email</i>
         </button>
       </div>
@@ -46,12 +46,12 @@ class BlogFormReview extends Component {
 
     const { submitBlog, history, formValues } = this.props;
 
-    submitBlog(formValues, this.state.file, history);
+    submitBlog(formValues, history);
   }
 
-  onFileChange(event) {
-    this.setState({ file: event.target.files[0] });
-  }
+  // onFileChange(event) {
+  //   this.setState({ file: event.target.files[0] });
+  // }
 
   render() {
     return (
@@ -59,12 +59,12 @@ class BlogFormReview extends Component {
         <h5>Please confirm your entries</h5>
         {this.renderFields()}
 
-        <h5>Add An Image</h5>
+        {/* <h5>Add An Image</h5>
         <input
           onChange={this.onFileChange.bind(this)}
           type="file"
           accept="image/*"
-        />
+        /> */}
 
         {this.renderButtons()}
       </form>

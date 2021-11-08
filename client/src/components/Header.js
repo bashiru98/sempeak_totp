@@ -22,7 +22,7 @@ state = {
         this.state.email = this.props.auth.email
         return [
           <li key="3" style={{ margin: '0 10px' }}>
-            <Link to= {this.props.auth.email.includes("sempeak.com") ? "/secure/sempeak/otpcodes" : '/auth/logout'}>Totp codes</Link>
+            <Link to= {this.props.auth.email.includes("sempeak.com") ? "/secure/sempeak/otpcodes" : '/auth/logout'}>View connected Sites</Link>
           </li>,
           <li key="2">
             <a href={'/auth/logout'}>Logout</a>

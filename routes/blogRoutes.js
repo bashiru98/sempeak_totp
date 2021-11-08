@@ -7,23 +7,23 @@ const cleanCache = require('../middlewares/cleanCache');
 const Blog = mongoose.model('Blog');
 
 module.exports = app => {
-  app.get('/api/blogs/:id', requireLogin, async (req, res) => {
+  app.get('/api/totps/:id', requireLogin, async (req, res) => {
     try {
+      console.log("reqs", req.user.id )
       const code = await Blog.findOne({
-        _user: req.user.id,
         _id: req.params.id
       });
-     
+
      
       qr.toDataURL(code.secret, (err, src) => {
         const blog  = {
           _id:code._id,
           imageUrl:src,
-          content:totp(code.secret),
+          content:totp(code.secret,{ period: 30 }),
           createdAt:code.createdAt,
           title:code.title,
         }
-    
+
         res.send(blog);
       })
      
@@ -33,7 +33,7 @@ module.exports = app => {
     
   });
 
-  app.get('/api/blogs',requireLogin, async (req, res) => {
+  app.get('/api/totps',requireLogin, async (req, res) => {
   
 
     const blogs = await Blog.find({ }).cache({
@@ -43,7 +43,7 @@ module.exports = app => {
     res.send(blogs);
   });
 
-  app.post('/api/blogs', cleanCache, async (req, res) => {
+  app.post('/api/totps',requireLogin, cleanCache, async (req, res) => {
     const { title, content, imageUrl,user,secret} = req.body;
     const blog = new Blog({
       imageUrl,
