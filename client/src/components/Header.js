@@ -3,10 +3,13 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class Header extends Component {
-  userdata = this.props.auth
+state = { 
+  email:''
+}
   renderContent() {
-
+   
     switch (this.props.auth) {
+      
       case null:
         return;
       case false:
@@ -16,9 +19,10 @@ class Header extends Component {
           </li>
         );
       default:
+        this.state.email = this.props.auth.email
         return [
           <li key="3" style={{ margin: '0 10px' }}>
-            <Link to="/secure/sempeak/otpcodes">Totp codes</Link>
+            <Link to= {this.props.auth.email.includes("sempeak.com") ? "/secure/sempeak/otpcodes" : '/auth/logout'}>Totp codes</Link>
           </li>,
           <li key="2">
             <a href={'/auth/logout'}>Logout</a>
@@ -32,7 +36,7 @@ class Header extends Component {
       <nav className="indigo">
         <div className="nav-wrapper">
           <Link
-            to={this.props.auth ? '/secure/sempeak/otpcodes' : '/'}
+            to='/'
             className="left brand-logo"
             style={{ marginLeft: '10px' }}
           >
@@ -45,8 +49,8 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth,current_user }) {
+  return { auth,current_user };
 }
 
 export default connect(mapStateToProps)(Header);
