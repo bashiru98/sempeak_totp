@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.cookieKey]
+    keys: ['123123123']
   })
 );
 app.use(passport.initialize());
