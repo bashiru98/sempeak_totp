@@ -18,7 +18,7 @@ passport.deserializeUser((id, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      callbackURL: 'https://sempeak-totp.herokuapp.com/auth/google/callback',
+      callbackURL: 'http://totp.datalayerstructure.com/auth/google/callback',
       clientID: "763693156568-uumnqf56lohntf2r3tecn75pnb88o52v.apps.googleusercontent.com",
       clientSecret: "p95THafvsHRIX6ddwH6SNmn0",
       proxy: true
